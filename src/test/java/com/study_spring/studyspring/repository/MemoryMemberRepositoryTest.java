@@ -55,6 +55,14 @@ class MemoryMemberRepositoryTest {
         member2.setName("youngwoo");
         repository.save(member2);
 
+
+        member1.setName("babo");
+
+
+
+
+
+
         List<Member> result = repository.findAll();
         Assertions.assertThat(result.size()).isEqualTo(2);
     }
