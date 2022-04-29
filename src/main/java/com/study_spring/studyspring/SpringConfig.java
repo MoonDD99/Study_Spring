@@ -16,19 +16,19 @@ import javax.persistence.PersistenceContext;
 @Configuration
 public class SpringConfig {
 
-    private final EntityManager em;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(@Qualifier("springDataJpaMemberRepository") MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
-    @Bean
+    /*@Bean
     public MemberRepository memberRepository() {
         return new JpaMemberRepository(em);
-    }
+    }*/
 }
