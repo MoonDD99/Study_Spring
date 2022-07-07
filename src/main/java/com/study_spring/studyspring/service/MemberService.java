@@ -4,6 +4,7 @@ import com.study_spring.studyspring.domain.Member;
 import com.study_spring.studyspring.repository.MemberRepository;
 import com.study_spring.studyspring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository){
+    public MemberService(@Qualifier("springDataJpaMemberRepository") MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
 
@@ -25,12 +26,12 @@ public class MemberService {
     /*
      * 회원가입
      * */
-    public Long join(Member member){
+    public Long join(Member member) {
         //같은 이름이 있는 중복 회원은 안된다. *** 변수자동생성 단축키 : ctrl + alt + v ***
         Optional<Member> result = memberRepository.findByName(member.getName());
 
         //같은 이름이 있는 지 검사
-        result.ifPresent(m ->{
+        result.ifPresent(m -> {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
 

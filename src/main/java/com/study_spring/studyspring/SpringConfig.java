@@ -23,10 +23,10 @@ public class SpringConfig {
         this.memberRepository = memberRepository;
     }
 
-    @Bean
+/*    @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository);
-    }
+    }*/
     /*@Bean
     public MemberRepository memberRepository() {
         return new JpaMemberRepository(em);
